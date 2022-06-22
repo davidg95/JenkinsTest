@@ -5,14 +5,14 @@ pipeline {
         stage('Prepare Build') {
             steps {
                 echo 'Preparing Build...'
-                // sh 'git clean -fdx'
-                sh 'echo -${BUILD_NUMBER} >> version.txt'
+                bat 'git clean -fdx'
+                bat 'echo -${BUILD_NUMBER} >> version.txt'
             }
         }
         stage('Build') {
             steps {
                 echo 'Building...'
-                sh 'gradle clean build'
+                bat 'gradle clean build'
             }
         }
         stage('Deploy') {
@@ -23,7 +23,7 @@ pipeline {
             }
             steps {
                 echo 'Deploying application...'
-                sh 'ant -buildfile deploy/deploy.xml deploy-application'
+                bat 'ant -buildfile deploy/deploy.xml deploy-application'
             }
         }
         stage('Execute') {
@@ -34,7 +34,7 @@ pipeline {
             }
             steps {
                 echo 'Executing application...'
-                sh 'sleep 10'
+                bat 'sleep 10'
             }
         }
     }
