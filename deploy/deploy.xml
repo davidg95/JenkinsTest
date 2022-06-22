@@ -1,0 +1,14 @@
+<project name="Application Deployment" default="deploy-application" basedir="..">
+    <description>
+        Deployment tasks for the application
+    </description>
+
+    <property file="${basedir}/deploy/deploy.properties"/>
+
+    <property name="jar-name" value="JenkinsTest.jar"/>
+
+    <target name="deploy-application" description="Deploy the application">
+        <copy file="${basedir}/build/libs/${jar-name}"
+              tofile="${deploy-directory}/${jar-name}"/>
+    </target>
+</project>

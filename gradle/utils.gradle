@@ -1,0 +1,14 @@
+import java.util.regex.Matcher
+
+ext {
+    jenkinsTestVersion = jenkinsTestVersion()
+}
+
+String jenkinsTestVersion() {
+    Matcher matcher = rootProject.file('version.txt').text =~ /(?m)^\s*([^\s]+).*$/
+    if (!matcher.find())
+        throw new IllegalArgumentException("No version number in version.txt")
+
+    String baseVersionNumber = matcher.group(1)
+    return baseVersionNumber
+}
