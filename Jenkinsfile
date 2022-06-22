@@ -31,6 +31,7 @@ pipeline {
                 node('HOST') {
                     unstash 'build'
                     unstash 'deploy'
+                    bat 'echo %USERNAME%'
                     bat 'ant -buildfile deploy/deploy.xml deploy-application'
                 }
             }
