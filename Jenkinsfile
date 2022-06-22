@@ -6,7 +6,7 @@ pipeline {
             steps {
                 echo 'Preparing Build...'
                 sh 'git clean -fdx'
-                sh 'echo -${BUILD_NUMBER} >> version.txt'
+                //sh 'echo -${BUILD_NUMBER} >> version.txt'
             }
         }
         stage('Build') {
