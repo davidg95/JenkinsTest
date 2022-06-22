@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'MASTER'
+    }
 
     stages {
         stage('Prepare Build') {
@@ -24,7 +26,9 @@ pipeline {
             }
             steps {
                 echo 'Deploying application...'
-                bat 'ant -buildfile deploy/deploy.xml deploy-application'
+                node('HOST') {
+                    bat 'ant -buildfile deploy/deploy.xml deploy-application'
+                }
             }
         }
         stage('Execute') {
@@ -35,7 +39,9 @@ pipeline {
             }
             steps {
                 echo 'Executing application...'
-                bat 'java -jar C:/Jenkins-Test/JenkinsTest.jar'
+                node('HOST') {
+                    bat 'java -jar C:/Jenkins-Test/JenkinsTest.jar'
+                }
             }
         }
     }
