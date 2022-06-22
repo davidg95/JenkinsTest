@@ -26,7 +26,11 @@ pipeline {
             }
             steps {
                 echo 'Deploying application...'
+                stash includes: '/build/**', name: 'build'
+                stash includes: '/deploy/**', name: 'deploy'
                 node('HOST') {
+                    unstash 'build'
+                    unstash 'deploy'
                     bat 'ant -buildfile deploy/deploy.xml deploy-application'
                 }
             }
