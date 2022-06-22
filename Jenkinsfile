@@ -34,7 +34,7 @@ pipeline {
             }
             steps {
                 echo 'Executing application...'
-                bat 'sleep 10'
+                bat 'java -jar C:/Jenkins-Test/JenkinsTest.jar'
             }
         }
     }
