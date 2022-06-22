@@ -31,7 +31,7 @@ pipeline {
                 node('HOST') {
                     unstash 'build'
                     unstash 'deploy'
-                    bat 'C:\\Apache\\Ant\\apache-ant-1.10.12\\bin\\ant.exe -buildfile deploy/deploy.xml deploy-application'
+                    bat 'C:\\Apache\\Ant\\apache-ant-1.10.12\\bin\\ant -buildfile deploy/deploy.xml deploy-application'
                 }
             }
         }
