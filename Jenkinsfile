@@ -7,6 +7,7 @@ pipeline {
                 echo 'Preparing Build...'
                 bat 'git clean -fdx'
                 bat 'echo -${BUILD_NUMBER} >> version.txt'
+                echo 'Agent Name: ${env.node_name}'
             }
         }
         stage('Build') {
